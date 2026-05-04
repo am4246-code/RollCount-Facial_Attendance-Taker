@@ -49,7 +49,7 @@ python app.py
 ```
 # Step by Step Guide
 
-## 1) Type in Student ID and Full Name, then click on "Take Live Pictures"
+ 1) Type in Student ID and Full Name, then click on "Take Live Pictures"
 
 <img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/acfb438d-f1c7-4327-9beb-08b7dd720ae5" />
 
