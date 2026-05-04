@@ -1,6 +1,6 @@
 # RollCount -- Facial Detection Attendance Taker!
 
-RollCount is a classroom attendance prototype that combines face detection, face recognition, and attendance logging.
+RollCount is a classroom attendance taking program that combines face detection, face recognition, and attendance logging for professors and teachers alike.
 
 ## MVP features
 
