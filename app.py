@@ -1,27 +1,20 @@
 """RollCount application entry point."""
 
 import logging
-import sys
-from pathlib import Path
-
-# Add the 'src' directory to the Python path
-# This allows the interpreter to find the 'rollcount' package correctly
-SRC_PATH = Path(__file__).parent / "src"
-sys.path.insert(0, str(SRC_PATH))
 import tkinter as tk
-from src.rollcount.ui import RollCountApp
-
+from rollcount.ui import RollCountApp
 
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 
 logger = logging.getLogger(__name__)
 
 
-if __name__ == "__main__":
+def main():
+    """Initializes and runs the RollCount application."""
     logger.info("Starting RollCount application")
     try:
         root = tk.Tk()
@@ -30,3 +23,7 @@ if __name__ == "__main__":
     except Exception as e:
         logger.error(f"Application error: {e}", exc_info=True)
         raise
+
+
+if __name__ == "__main__":
+    main()
