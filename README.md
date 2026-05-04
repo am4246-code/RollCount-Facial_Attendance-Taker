@@ -55,8 +55,7 @@ python app.py
 
 ## 2) Click on "Start Face Scan" and wait until the program takes 3 pictures; Once completed, a confirmation screen should pop up.
 
-<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/22b95f00-dc1c-4a88-b07d-8078f5c67c6f" /> <img width="928" height="385" alt="image" src="https://github.com/user-attachments/assets/ce8376e4-32bf-4ba3-8610-c19d541082b4" />
-
+![photo1]("https://github.com/user-attachments/assets/22b95f00-dc1c-4a88-b07d-8078f5c67c6f") ![photo2]("https://github.com/user-attachments/assets/ce8376e4-32bf-4ba3-8610-c19d541082b4")
 
 ## 3) Go to "Take Attendance" section, then start the livestream (detection model needs to load first before it starts detecting faces)
 
