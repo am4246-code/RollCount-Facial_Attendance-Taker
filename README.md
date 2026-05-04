@@ -1,4 +1,4 @@
-## RollCount
+# RollCount
 
 RollCount is a classroom attendance prototype that combines face detection, face recognition, and attendance logging.
 
