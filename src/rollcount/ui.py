@@ -851,13 +851,21 @@ class RollCountApp:
 
         header_frame = ttk.Frame(parent, style="Hero.TFrame", padding=(0, 8))
         header_frame.grid(row=0, column=0, sticky="ew", pady=(0, 10))
-        header_frame.columnconfigure(0, weight=1)
+        header_frame.columnconfigure(1, weight=1) # Give weight to the spacer column
 
         ttk.Label(
             header_frame,
             text="📋 Daily Attendance Log 📋 ",
             style="Hero.TLabel",
-        ).grid(row=0, column=0, sticky="")
+        ).grid(row=0, column=0, sticky="w", padx=(12, 0))
+
+        ttk.Button(
+            header_frame,
+            text="Export for Canvas (CSV)",
+            command=self.export_daily_canvas,
+            style="Modern.TButton",
+        ).grid(row=0, column=2, sticky="e", padx=(0, 12))
+
         columns = ("index", "name", "check_in_time", "present", "absent")
         self.daily_report_table = ttk.Treeview(
             parent,
@@ -878,6 +886,13 @@ class RollCountApp:
         self.daily_report_table.column("absent", width=100, anchor="center")
 
         self.daily_report_table.grid(row=1, column=0, sticky="nsew")
+
+    def export_daily_canvas(self) -> None:
+        try:
+            path = self.attendance_logger.export_daily_summary(datetime.now(), self.registry.list_students())
+            messagebox.showinfo("Export Success", f"Daily Canvas report saved to:\n{path}")
+        except Exception as e:
+            messagebox.showerror("Export Error", f"Could not export daily Canvas report: {e}")
 
     def _populate_daily_report(self) -> None:
         if not hasattr(self, "daily_report_table"):
@@ -906,13 +921,21 @@ class RollCountApp:
         parent.rowconfigure(1, weight=1)
         header_frame = ttk.Frame(parent, style="Hero.TFrame", padding=(0, 8))
         header_frame.grid(row=0, column=0, sticky="ew", pady=(0, 10))
-        header_frame.columnconfigure(0, weight=1)
+        header_frame.columnconfigure(1, weight=1) # Give weight to the spacer column
 
         ttk.Label(
             header_frame,
             text="📅 Weekly Attendance Log 📅 ",
             style="Hero.TLabel",
-        ).grid(row=0, column=0, sticky="")
+        ).grid(row=0, column=0, sticky="w", padx=(12, 0))
+
+        ttk.Button(
+            header_frame,
+            text="Export for Canvas (CSV)",
+            command=self.export_weekly_canvas,
+            style="Modern.TButton",
+        ).grid(row=0, column=2, sticky="e", padx=(0, 12))
+
         columns = ("index", "name", "mon", "tue", "wed", "thu", "fri")
         self.weekly_report_table = ttk.Treeview(
             parent,
@@ -939,6 +962,13 @@ class RollCountApp:
         self.weekly_report_table.column("index", width=50, anchor="center")
         self.weekly_report_table.tag_configure("summary", font=("Georgia", 10, "bold"))
         self.weekly_report_table.grid(row=1, column=0, sticky="nsew")
+
+    def export_weekly_canvas(self) -> None:
+        try:
+            path = self.attendance_logger.export_weekly_summary(datetime.now(), self.registry.list_students())
+            messagebox.showinfo("Export Success", f"Weekly Canvas report saved to:\n{path}")
+        except Exception as e:
+            messagebox.showerror("Export Error", f"Could not export weekly Canvas report: {e}")
 
     def _populate_weekly_report(self) -> None:
         if not hasattr(self, "weekly_report_table"):
@@ -967,8 +997,8 @@ class RollCountApp:
             for day_index, day in enumerate(week_days):
                 date_key = day.strftime("%Y-%m-%d")
                 present = student.student_id in presence.get(date_key, set())
-                day_has_started = bool(presence.get(date_key)) or day < today
-                marks.append("✓" if present else "X" if day_has_started else "")
+                day_is_in_past_or_present = day <= today
+                marks.append("✓" if present else "X" if day_is_in_past_or_present else "")
                 if present:
                     daily_present_counts[day_index] += 1
             table.insert(
@@ -984,7 +1014,7 @@ class RollCountApp:
         total_students = len(students)
         daily_absent_counts = [
             total_students - count
-            if bool(presence.get(day.strftime("%Y-%m-%d"))) or day < today
+            if day <= today
             else ""
             for day, count in zip(week_days, daily_present_counts)
         ]
@@ -1008,13 +1038,20 @@ class RollCountApp:
 
         header_frame = ttk.Frame(parent, style="Hero.TFrame", padding=(0, 8))
         header_frame.grid(row=0, column=0, sticky="ew", pady=(0, 10))
-        header_frame.columnconfigure(0, weight=1)
+        header_frame.columnconfigure(1, weight=1) # Give weight to the spacer column
 
         ttk.Label(
             header_frame,
             text="🗓️ Monthly Attendance Log 🗓️",
             style="Hero.TLabel",
-        ).grid(row=0, column=0, sticky="")
+        ).grid(row=0, column=0, sticky="w", padx=(12, 0))
+
+        ttk.Button(
+            header_frame,
+            text="Export for Canvas (CSV)",
+            command=self.export_monthly_canvas,
+            style="Modern.TButton",
+        ).grid(row=0, column=2, sticky="e", padx=(0, 12))
 
         grid_shell = ttk.Frame(parent, style="Card.TFrame")
         grid_shell.grid(row=1, column=0, sticky="nsew", pady=(10, 0))
@@ -1045,6 +1082,13 @@ class RollCountApp:
             xscrollcommand=x_scroll.set,
             yscrollcommand=y_scroll.set,
         )
+
+    def export_monthly_canvas(self) -> None:
+        try: # type: ignore[attr-defined]
+            path = self.attendance_logger.export_monthly_summary(datetime.now(), self.registry.list_students())
+            messagebox.showinfo("Export Success", f"Monthly Canvas report saved to:\n{path}")
+        except Exception as e:
+            messagebox.showerror("Export Error", f"Could not export monthly Canvas report: {e}")
 
     def _populate_monthly_report(self) -> None:
         if not hasattr(self, "monthly_report_canvas"):
@@ -1126,14 +1170,14 @@ class RollCountApp:
             for day_index, day in enumerate(month_days):
                 x = index_width + name_width + (day_index * day_width)
                 is_weekend = day.weekday() >= 5
-                is_future = day.date() > today.date()
+                day_is_in_past_or_present = day.date() <= today.date()
                 date_key = day.strftime("%Y-%m-%d")
                 day_has_started = bool(presence.get(date_key)) or day.date() < today.date()
                 is_present = student.student_id in presence.get(date_key, set())
                 
                 mark = ""
-                if not is_weekend and not is_future and day_has_started:
-                    mark = "✓" if is_present else "X"
+                if not is_weekend and day_is_in_past_or_present:
+                    mark = "✓" if is_present else "X" if day_has_started else ""
                     if is_present:
                         present_counts[day_index] += 1
                     else:
@@ -1154,10 +1198,11 @@ class RollCountApp:
         for day_index, day in enumerate(month_days):
             x = index_width + name_width + (day_index * day_width)
             is_weekend = day.weekday() >= 5
+            day_is_in_past_or_present = day.date() <= today.date()
             date_key = day.strftime("%Y-%m-%d")
             day_has_started = bool(presence.get(date_key)) or day.date() < today.date()
             
-            if not is_weekend and day.date() <= today.date() and day_has_started:
+            if not is_weekend and day_is_in_past_or_present and day_has_started:
                 present_value = str(present_counts[day_index])
                 absent_value = str(absent_counts[day_index])
                 text_x = x + day_width / 2

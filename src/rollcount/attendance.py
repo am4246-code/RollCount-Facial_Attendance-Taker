@@ -427,6 +427,7 @@ class AttendanceLogger:
         """
         ensure_directories()
         year, month = day.year, day.month
+        today = datetime.now().date()
         month_name = day.strftime("%B")
         output_path = MONTHLY_LOG_DIR / f"Monthly_Attendance_{year}_{month_name}.xlsx" # Revert: Keep in MONTHLY_LOG_DIR
 
@@ -462,26 +463,36 @@ class AttendanceLogger:
             
             for i, student in enumerate(sorted_students, start=1):
                 row_data = [i, student.full_name, ""]
-                
-                for d in days_in_month: # Revert: Keep icon logic for monthly
+                for day_index, d in enumerate(days_in_month):
                     date_str = d.strftime("%Y-%m-%d")
-                    # Monday is 0, Sunday is 6
-                    day_index = d.day - 1
-                    if date_str in presence_by_day and student.student_id in presence_by_day[date_str]: # Revert: Keep icon logic
-                        row_data.append("✔") 
+                    is_present = date_str in presence_by_day and student.student_id in presence_by_day[date_str]
+                    day_is_in_past_or_present = d.date() <= today
+                    day_has_started = bool(presence_by_day.get(date_str)) or d.date() < today
+                    is_weekend = d.weekday() >= 5
+
+                    mark = ""
+                    if not is_weekend and day_is_in_past_or_present:
+                        mark = "✔" if is_present else "✘" if day_has_started else ""
+                    
+                    row_data.append(mark)
+
+                    if is_present:
                         daily_present_counts[day_index] += 1
-                    else:
-                        row_data.append("✘" if d.weekday() < 5 else "")
+
                 sheet.append(row_data)
 
             # --- Add Summary Row ---
             sheet.append([]) # Add a blank row for spacing
             total_students = len(sorted_students)
-            daily_present_counts_display = [daily_present_counts[i] if days_in_month[i].weekday() < 5 else "" for i, _ in enumerate(days_in_month)] # Revert: Keep summary logic
-            daily_absent_counts_display = [total_students - count if days_in_month[i].weekday() < 5 else "" for i, count in enumerate(daily_present_counts)] # Revert: Keep summary logic
-            
-            present_summary_row = ["", "Total Present", ""] + daily_present_counts_display
-            absent_summary_row = ["", "Total Absent", ""] + daily_absent_counts_display
+            present_summary = []
+            absent_summary = []
+            for i, d in enumerate(days_in_month):
+                day_has_started = bool(presence_by_day.get(d.strftime("%Y-%m-%d"))) or d.date() < today
+                show_summary = d.weekday() < 5 and d.date() <= today and day_has_started
+                present_summary.append(str(daily_present_counts[i]) if show_summary else "")
+                absent_summary.append(str(total_students - daily_present_counts[i]) if show_summary else "")
+            present_summary_row = ["", "Total Present", ""] + present_summary
+            absent_summary_row = ["", "Total Absent", ""] + absent_summary
             sheet.append(present_summary_row)
             sheet.append(absent_summary_row)
 

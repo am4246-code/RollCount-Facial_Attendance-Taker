@@ -7,9 +7,9 @@ from pathlib import Path
 # Add the 'src' directory to the Python path
 # This allows the interpreter to find the 'rollcount' package correctly
 SRC_PATH = Path(__file__).parent / "src"
-sys.path.insert(0, str(SRC_PATH)) # Ensure this line is present
+sys.path.insert(0, str(SRC_PATH))
 import tkinter as tk
-from rollcount.ui import RollCountApp
+from src.rollcount.ui import RollCountApp
 
 
 # Configure logging
