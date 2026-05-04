@@ -47,6 +47,37 @@ pip install -r requirements.txt
 ```powershell
 python app.py
 ```
+## Step by Step Guide
+
+# 1) Type in Student ID and Full Name, then click on "Take Live Pictures"
+
+<img width="496" height="500" alt="image" src="https://github.com/user-attachments/assets/acfb438d-f1c7-4327-9beb-08b7dd720ae5" />
+
+# 2) Click on "Start Face Scan" and wait until the program takes 3 pictures of you
+
+<img width="943" height="809" alt="image" src="https://github.com/user-attachments/assets/22b95f00-dc1c-4a88-b07d-8078f5c67c6f" />
+
+# 3) Go to "Take Attendance" section, then start the livestream (detection model needs to load first before it starts detecting faces)
+
+<img width="1791" height="918" alt="image" src="https://github.com/user-attachments/assets/7a745f60-4bb9-451b-a093-11c4252925af" />
+
+# 4) Wait untl the model detects your face (click the checkmark icon if it correctly matches the face of registered student; click 'X' if it doesn't).
+
+<img width="1482" height="918" alt="image" src="https://github.com/user-attachments/assets/a7f8c091-93e1-45dc-8daf-ff22ed1ef15b" />
+
+# 5) Select the "Daily Log" to see today's attendance, "Weekly Log" to view the attendance log throughout the week, or the "Monthly Log" to view the attendance log throughout the month.
+
+# (If you want to export this data on Canvas or Google Excel, click on "Export for Canvas (CSV)" button).
+
+<img width="1444" height="238" alt="image" src="https://github.com/user-attachments/assets/64588ba5-dfe1-45ca-8a1c-580cb525199e" />
+
+<img width="1441" height="344" alt="image" src="https://github.com/user-attachments/assets/2b3836b0-de28-4617-bf1d-477a4abbbc69" />
+
+<img width="1428" height="336" alt="image" src="https://github.com/user-attachments/assets/e4cc84ec-5c82-4d72-bfc6-c87b7e607769" />
+
+# Quick Note
+
+The program changes the days, weeks, and months automatically; the test images were taken on the dates shown in the picture.
 
 ## Notes about YOLO and recognition
 
