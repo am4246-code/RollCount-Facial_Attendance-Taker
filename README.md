@@ -1,5 +1,4 @@
-# <img width="512" height="512" alt="image" src="https://github.com/user-attachments/assets/41ab7fe2-b7b7-4ea8-9865-78a274953ba4" />
-RollCount
+#RollCount
 
 RollCount is a classroom attendance prototype that combines face detection, face recognition, and attendance logging.
 
