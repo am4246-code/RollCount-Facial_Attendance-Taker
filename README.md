@@ -1,6 +1,6 @@
 # RollCount
 
-RollCount is a classroom attendance prototype that combines face detection, face recognition, and Excel attendance logging.
+RollCount is a classroom attendance prototype that combines face detection, face recognition, and attendance logging.
 
 ## MVP features
 
@@ -8,7 +8,7 @@ RollCount is a classroom attendance prototype that combines face detection, face
 - Store student metadata locally in JSON.
 - Open a webcam feed and detect faces in real time.
 - Recognize students locally with OpenCV's LBPH face recognizer.
-- Log attendance to an Excel workbook with timestamped check-ins.
+- Software has Daily, Weekly, or Monthly attendance log that tracks total attendance data.
 - Fall back gracefully when optional ML dependencies are not installed.
 
 ## Project layout
