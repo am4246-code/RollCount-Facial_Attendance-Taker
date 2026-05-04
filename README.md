@@ -47,8 +47,7 @@ pip install -r requirements.txt
 ```powershell
 python app.py
 ```
-# <img width="128" height="128" alt="image" src="https://github.com/user-attachments/assets/d5e99f32-1875-4e02-aec5-f7f2f8356d13" />
- Step by Step Guide
+# <img width="60" height="60" alt="image" src="https://github.com/user-attachments/assets/d5e99f32-1875-4e02-aec5-f7f2f8356d13" /> Step by Step Guide
 
 ## 1) Type in Student ID and Full Name, then click on "Take Live Pictures"
 
