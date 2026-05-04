@@ -59,7 +59,7 @@ python app.py
 
 ## 3) Go to "Take Attendance" section, then start the livestream (detection model needs to load first before it starts detecting faces)
 
-<img width="1300" height="300" alt="image" src="https://github.com/user-attachments/assets/7a745f60-4bb9-451b-a093-11c4252925af" />
+<img width="1300" height="800" alt="image" src="https://github.com/user-attachments/assets/7a745f60-4bb9-451b-a093-11c4252925af" />
 
 ## 4) Wait untl the model detects your face (click the checkmark icon if it correctly matches the face of registered student; click 'X' if it doesn't).
 
