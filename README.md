@@ -53,9 +53,10 @@ python app.py
 
 <img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/acfb438d-f1c7-4327-9beb-08b7dd720ae5" />
 
-## 2) Click on "Start Face Scan" and wait until the program takes 3 pictures of you
+## 2) Click on "Start Face Scan" and wait until the program takes 3 pictures; Once completed, a confirmation screen should pop up.
 
-<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/22b95f00-dc1c-4a88-b07d-8078f5c67c6f" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/22b95f00-dc1c-4a88-b07d-8078f5c67c6f" /> <img width="928" height="385" alt="image" src="https://github.com/user-attachments/assets/ce8376e4-32bf-4ba3-8610-c19d541082b4" />
+
 
 ## 3) Go to "Take Attendance" section, then start the livestream (detection model needs to load first before it starts detecting faces)
 
@@ -67,7 +68,7 @@ python app.py
 
 ## 5) Select the "Daily Log" to see today's attendance, "Weekly Log" to view the attendance log throughout the week, or the "Monthly Log" to view the attendance log throughout the month.
 
-# (If you want to export this data on Canvas or Google Excel, click on "Export for Canvas (CSV)" button).
+## (If you want to export this data on Canvas or Google Excel, click on "Export for Canvas (CSV)" button).
 
 <img width="1442" height="262" alt="image" src="https://github.com/user-attachments/assets/d499ab22-6c0d-4037-884d-758000bbc1ad" />
 
