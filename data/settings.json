@@ -1,0 +1,6 @@
+{
+  "lbph_confidence_threshold": 115.0,
+  "template_distance_threshold": 8014.4,
+  "confirmation_frames": 7,
+  "phone_screen_mode": false
+}
