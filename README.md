@@ -47,7 +47,7 @@ pip install -r requirements.txt
 ```powershell
 python app.py
 ```
-# <img align="left" width="100" src="https://cdn-icons-png.flaticon.com/128/15435/15435728.png"> Step by Step Guide
+# Step by Step Guide
 
 ## 1) Type in Student ID and Full Name, then click on "Take Live Pictures"
 
@@ -81,7 +81,7 @@ python app.py
 
 <img width="1442" height="262" alt="image" src="https://github.com/user-attachments/assets/d499ab22-6c0d-4037-884d-758000bbc1ad" />
 
-<img width="1442" height="262" alt="image" src="https://github.com/user-attachments/assets/2b3836b0-de28-4617-bf1d-477a4abbbc69" />
+<img width="1442" height="262" alt="image" src="https://github.com/user-attachments/assets/517de3d3-62a1-478e-9497-cee14095b9eb" />
 
 <img width="1442" height="262" alt="image" src="https://github.com/user-attachments/assets/e4cc84ec-5c82-4d72-bfc6-c87b7e607769" />
 
