@@ -63,21 +63,22 @@ python app.py
 
 ## 4) Wait untl the model detects your face (click the checkmark icon if it correctly matches the face of registered student; click 'X' if it doesn't).
 
-<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/a7f8c091-93e1-45dc-8daf-ff22ed1ef15b" />
+<img width="1428" height="911" alt="image" src="https://github.com/user-attachments/assets/4673d2ce-f075-4f2d-9e99-b54232c0ac8f" />
 
 ## 5) Select the "Daily Log" to see today's attendance, "Weekly Log" to view the attendance log throughout the week, or the "Monthly Log" to view the attendance log throughout the month.
 
 # (If you want to export this data on Canvas or Google Excel, click on "Export for Canvas (CSV)" button).
 
-<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/64588ba5-dfe1-45ca-8a1c-580cb525199e" />
+<img width="1442" height="262" alt="image" src="https://github.com/user-attachments/assets/d499ab22-6c0d-4037-884d-758000bbc1ad" />
 
-<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/2b3836b0-de28-4617-bf1d-477a4abbbc69" />
+<img width="1442" height="262" alt="image" src="https://github.com/user-attachments/assets/2b3836b0-de28-4617-bf1d-477a4abbbc69" />
 
-<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/e4cc84ec-5c82-4d72-bfc6-c87b7e607769" />
+<img width="1442" height="262" alt="image" src="https://github.com/user-attachments/assets/e4cc84ec-5c82-4d72-bfc6-c87b7e607769" />
 
-# Quick Note
+# Quick Notes
 
-The program changes the days, weeks, and months automatically; the test images were taken on the dates shown in the picture.
+- The program changes the days, weeks, and months automatically; the test images were taken on the dates shown in the picture.
+- For this trial example, online images are being used. However, RollCount is normally used on people, not phone pictures.
 
 ## Notes about YOLO and recognition
 
