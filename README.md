@@ -1,8 +1,6 @@
 # RollCount -- Facial Detection Attendance Taker!
 
-RollCount is a classroom attendance taking program that combines face detection, face recognition, and attendance logging for professors and teachers alike.
-
-## Key Features
+RollCount is a attendance taking software that utilizes face detection and recognition to idenitfy and mark a student present using live feed from your webcam.
 
 - Register students with a student ID, name, and reference image.
 - Store student metadata locally in JSON.
