@@ -2,7 +2,7 @@
 
 RollCount is a classroom attendance taking program that combines face detection, face recognition, and attendance logging for professors and teachers alike.
 
-## MVP features
+## Key Features
 
 - Register students with a student ID, name, and reference image.
 - Store student metadata locally in JSON.
