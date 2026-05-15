@@ -110,9 +110,14 @@ class RollCountApp:
         self.root.bind('<Escape>', self._on_escape_key)
         self.root.bind('<space>', self._on_space_key)
 
+        # Defer main UI build to allow a loading screen to show first.
+        # The main app entry point will call build_main_ui().
+
+    def build_main_ui(self) -> None:
+        """Builds the main application interface after the loading screen."""
         self._load_app_icon()
         if self.app_icon:
-            self.root.iconphoto(True, self.app_icon)
+            self.root.iconphoto(True, self.app_icon)  # type: ignore[arg-type]
         self._configure_styles()
         self._build_layout()
         self.refresh_student_table()
@@ -995,11 +1000,13 @@ class RollCountApp:
         for index, student in enumerate(students, start=1):
             marks: list[str] = []
             for day_index, day in enumerate(week_days):
-                date_key = day.strftime("%Y-%m-%d")
-                present = student.student_id in presence.get(date_key, set())
                 day_is_in_past_or_present = day <= today
-                marks.append("✓" if present else "X" if day_is_in_past_or_present else "")
-                if present:
+                date_key = day.strftime("%Y-%m-%d")
+                day_has_started = bool(presence.get(date_key)) or day < today
+                is_present = student.student_id in presence.get(date_key, set())
+                mark = "✓" if is_present else "X" if day_is_in_past_or_present and day_has_started else ""
+                marks.append(mark)
+                if is_present:
                     daily_present_counts[day_index] += 1
             table.insert(
                 "",
@@ -1013,16 +1020,17 @@ class RollCountApp:
 
         total_students = len(students)
         daily_absent_counts = [
-            total_students - count
-            if day <= today
+            str(total_students - daily_present_counts[i])
+            if (day <= today and (bool(presence.get(day.strftime("%Y-%m-%d"))) or day < today))
             else ""
-            for day, count in zip(week_days, daily_present_counts)
+            for i, day in enumerate(week_days)
         ]
+        daily_present_counts_display = [str(count) if count > 0 else "" for count in daily_present_counts]
         table.insert("", "end", values=("", "", "", "", "", "", ""))
         table.insert(
             "",
             "end",
-            values=("", "Total Present", *daily_present_counts),
+            values=("", "Total Present", *daily_present_counts_display),
             tags=("summary",),
         )
         table.insert(
@@ -1335,17 +1343,6 @@ class RollCountApp:
             style="Subhero.TLabel",
         )
         self.confirmation_frames_label.pack(side="left")
-
-        phone_mode_frame = ttk.Frame(tuning_card, style="Card.TFrame")
-        phone_mode_frame.pack(anchor="w", fill="x", pady=(18, 0))
-        ttk.Label(phone_mode_frame, text="Live + Phone Detection", style="Section.TLabel").pack(anchor="w")
-        self.phone_screen_mode_var = tk.BooleanVar(value=self.app_config.phone_screen_mode)
-        ttk.Checkbutton(
-            phone_mode_frame,
-            text="Recognize people in person and from faces shown on phones or tablets",
-            variable=self.phone_screen_mode_var,
-            command=self.on_phone_screen_mode_toggle,
-        ).pack(anchor="w", pady=(8, 0))
 
         data_card = ttk.LabelFrame(
             parent,
@@ -1967,7 +1964,11 @@ class RollCountApp:
     def on_phone_screen_mode_toggle(self) -> None:
         summary_config = replace(
             self.app_config,
-            phone_screen_mode=bool(self.phone_screen_mode_var.get()),
+            # This method is not currently used, and phone_screen_mode_var is not defined.
+            # If phone screen mode needs to be configurable, a UI element and corresponding
+            # StringVar/BooleanVar would need to be added to the settings tab.
+            # For now, we'll keep the existing config value.
+            phone_screen_mode=self.app_config.phone_screen_mode,
         )
         self.app_config = summary_config
         self.session_config_summary = self._build_config_summary(self.app_config)
@@ -1976,6 +1977,7 @@ class RollCountApp:
             self.system_status_label.config(
                 text=f"System status: {self.session_config_summary}"
             )
+
     
     def rebuild_recognizer_pipeline(self) -> None:
         """Triggers the active session's recognizer to rebuild with updated student data."""

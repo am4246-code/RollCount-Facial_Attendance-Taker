@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "student_id": "31715256",
+    "full_name": "Amiyah Mosley",
+    "image_paths": [
+      "C:\\Users\\ckens\\OneDrive\\Desktop\\ROLLCOUNT\\data\\students\\31715256_Amiyah_Mosley_1.jpg",
+      "C:\\Users\\ckens\\OneDrive\\Desktop\\ROLLCOUNT\\data\\students\\31715256_Amiyah_Mosley_2.jpg",
+      "C:\\Users\\ckens\\OneDrive\\Desktop\\ROLLCOUNT\\data\\students\\31715256_Amiyah_Mosley_3.jpg"
+    ]
+  },
+  {
+    "student_id": "31715255",
+    "full_name": "Michael Jackson",
+    "image_paths": [
+      "C:\\Users\\ckens\\OneDrive\\Desktop\\ROLLCOUNT\\data\\students\\31715255_Michael_Jackson_1.jpg",
+      "C:\\Users\\ckens\\OneDrive\\Desktop\\ROLLCOUNT\\data\\students\\31715255_Michael_Jackson_2.jpg",
+      "C:\\Users\\ckens\\OneDrive\\Desktop\\ROLLCOUNT\\data\\students\\31715255_Michael_Jackson_3.jpg"
+    ]
+  }
+]
