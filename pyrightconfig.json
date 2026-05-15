@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "venvPath": ".",
   "venv": ".venv",
@@ -11,3 +12,18 @@
   "include": ["src", "app.py"],
   "exclude": ["**/node_modules", "**/__pycache__", ".venv"]
 }
+=======
+{
+  "venvPath": ".",
+  "venv": ".venv",
+  "pythonVersion": "3.11",
+  "pythonPlatform": "Windows",
+  "typeCheckingMode": "basic",
+  "reportMissingImports": false,
+  "reportOptionalMemberAccess": false,
+  "reportGeneralTypeIssues": true,
+  "reportUnusedVariable": true,
+  "include": ["src", "app.py"],
+  "exclude": ["**/node_modules", "**/__pycache__", ".venv"]
+}
+>>>>>>> 25bdace953c115bc904e927df5900ff97d3a8088

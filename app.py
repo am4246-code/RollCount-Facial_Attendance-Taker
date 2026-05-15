@@ -4,9 +4,8 @@ import logging
 import sys
 from pathlib import Path
 
-# Add the 'src' directory to the Python path to find the 'rollcount' package
+# Add the 'src' directory to the Python path
 sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
-
 import tkinter as tk
 from loading import LoadingScreen
 from rollcount.ui import RollCountApp
@@ -28,14 +27,13 @@ def main():
         root.geometry("1440x940")
         root.configure(bg="#e9eef5")
 
-
-        app = RollCountApp(root)
+        app: RollCountApp | None = None
 
         def load_main_app():
             """Build the main app and destroy the loading screen."""
-            app.build_main_ui()
+            nonlocal app
             loading_screen.destroy()
-            # Go to the enrollment tab after loading
+            app = RollCountApp(root)
             app._select_tab(0)
 
         # Show loading screen, then schedule the main app to load.
@@ -44,7 +42,6 @@ def main():
         root.mainloop()
     except Exception as e:
         logger.error(f"Application error: {e}", exc_info=True)
-        raise
 
 
 if __name__ == "__main__":
